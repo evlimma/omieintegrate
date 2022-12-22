@@ -24,7 +24,7 @@ class Solucoes
      */
     public function listar($nRegPorPagina = 200, $nPagina = 1, $arrayFiltros = [])
     {
-        return $this->apiKey . "-" . $this->apiSecret . "-" . $nRegPorPagina . "-" . $nPagina . "-" . $arrayFiltros;
+        return $this->apiKey . "-ok";
 
 //        $requestBody = array_merge([
 //            'pagina' => $nPagina,
