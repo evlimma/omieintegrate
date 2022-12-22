@@ -45,10 +45,7 @@ abstract class General
             'param' => [[
                 'pagina' => $nPagina,
                 'registros_por_pagina' => $nRegPorPagina,
-                'apenas_importado_api' => 'N',
-                'cadastros' => [[
-                    'cInativo' => 'N'
-                ]]
+                'apenas_importado_api' => 'N'
             ]]
         ];
 
