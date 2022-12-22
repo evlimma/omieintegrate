@@ -1,41 +1,29 @@
 <?php
 
-namespace Evlimma\OmieIntegrate;
+namespace EvLimma\OmieIntegrate;
 
-class Solucoes
+class Solucoes extends General
 {
-    public $apiKey;
-    public $apiSecret;
-
-    public function __construct($apiKey = null, $apiSecret = null)
+    /**
+     * 
+     * @param string $apiKey
+     * @param string $apiSecret
+     */
+    public function __construct(string $apiKey, string $apiSecret)
     {
-        $this->apiKey = $apiKey;
-        $this->apiSecret = $apiSecret;
+        parent::__construct($apiKey, $apiSecret);
     }
 
     /**
-     * Recupera todos os clientes
-     *
-     * @see https://app.omie.com.br/api/v1/geral/clientes/#ListarClientes
-     * @param Integer $nRegPorPagina Número de registro por página
-     * @param Integer $nPagina Número da página
-     * @param Array $arrayFiltros Array de filtros
-     * @return json
+     * 
+     * @param int $nRegPorPagina
+     * @param int $nPagina
+     * @param array $arrayFiltros
+     * @return \stdClass|null
      */
-    public function listar($nRegPorPagina = 200, $nPagina = 1, $arrayFiltros = [])
+    public function listar(int $nRegPorPagina = 50, int $nPagina = 1, array $arrayFiltros = []): ?\stdClass
     {
-        return $this->apiKey . "-ok";
-
-//        $requestBody = array_merge([
-//            'pagina' => $nPagina,
-//            'registros_por_pagina' => $nRegPorPagina,
-//                ], $arrayFiltros);
-//
-//        return $this->http->post(
-//                        '/geral/clientes/',
-//                        $requestBody,
-//                        'ListarClientes'
-//        );
+        $render = parent::list('ListarSolucoes', $nRegPorPagina, $nPagina, $arrayFiltros, 'crm/solucoes/');
+        return $render;
     }
-
 }
