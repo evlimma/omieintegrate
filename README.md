@@ -14,7 +14,7 @@ Facilite a integração PHP com o Omie [https://omie.com.br/](https://omie.com.b
 Data Layer is available via Composer:
 
 ```bash
-"evlimma/omieintegrate": "^1.0"
+"evlimma/omieintegrate": "dev-main"
 ```
 
 or run
