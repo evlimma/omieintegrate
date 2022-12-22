@@ -35,7 +35,7 @@ Para mais detalhes sobre como usar o Omie Integrate, veja a pasta de exemplo com
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/robsonvleite/datalayer/blob/master/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/evlimma/omieintegrate/blob/master/CONTRIBUTING.md) for details.
 
 ## Support
 
