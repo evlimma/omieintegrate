@@ -21,7 +21,7 @@ class Solucoes extends General
      * @param array $arrayFiltros
      * @return \stdClass|null
      */
-    public function listar(int $nRegPorPagina = 50, int $nPagina = 1, array $arrayFiltros = []): ?\stdClass
+    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, array $arrayFiltros = []): ?\stdClass
     {
         $render = parent::list('ListarSolucoes', $nRegPorPagina, $nPagina, $arrayFiltros, 'crm/solucoes/');
         return $render;
