@@ -37,16 +37,19 @@ abstract class General
     public function list(string $call, int $nRegPorPagina, int $nPagina, array $arrayFiltros, string $endpoint): ?\stdClass
     {
         $curl = curl_init();
-        
+
         $post = [
             'call' => $call,
             'app_key' => $this->apiKey,
             'app_secret' => $this->apiSecret,
             'param' => [[
-            'pagina' => $nPagina,
-            'registros_por_pagina' => $nRegPorPagina,
-            'apenas_importado_api' => 'N',
-            'cInativo' => 'N']]
+                'pagina' => $nPagina,
+                'registros_por_pagina' => $nRegPorPagina,
+                'apenas_importado_api' => 'N',
+                'cadastros' => [[
+                    'cInativo' => 'N'
+                ]]
+            ]]
         ];
 
         curl_setopt_array($curl, [
