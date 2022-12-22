@@ -1,3 +1,2 @@
-
-index.php
-vendor/*
+/vendor/*
+/index.php
