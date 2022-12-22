@@ -45,7 +45,8 @@ abstract class General
             'param' => [[
             'pagina' => $nPagina,
             'registros_por_pagina' => $nRegPorPagina,
-            'apenas_importado_api' => 'N']]
+            'apenas_importado_api' => 'N',
+            'cInativo' => 'N']]
         ];
 
         curl_setopt_array($curl, [
