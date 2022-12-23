@@ -30,11 +30,11 @@ abstract class General
      * @param string $call
      * @param int $nRegPorPagina
      * @param int $nPagina
-     * @param array $arrayFiltros
+     * @param int $nCodigo
      * @param string $endpoint
      * @return \stdClass|null
      */
-    public function list(string $call, int $nRegPorPagina, int $nPagina, array $arrayFiltros, string $endpoint): ?\stdClass
+    public function list(string $call, int $nRegPorPagina, int $nPagina, int $nCodigo, string $endpoint): ?\stdClass
     {
         $curl = curl_init();
 
@@ -48,6 +48,11 @@ abstract class General
                 'apenas_importado_api' => 'N'
             ]]
         ];
+        
+        // Adiciona o paramentro para filtro o código
+        if ($nCodigo) {
+            $post['param'][0]['nCodigo'] = $nCodigo;
+        }
 
         curl_setopt_array($curl, [
             CURLOPT_URL => "{$this->urlLink}/{$endpoint}",
