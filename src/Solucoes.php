@@ -4,6 +4,8 @@ namespace EvLimma\OmieIntegrate;
 
 class Solucoes extends General
 {
+    protected $endpoint = 'crm/solucoes/';
+    
     /**
      * 
      * @param string $apiKey
@@ -23,7 +25,7 @@ class Solucoes extends General
      */
     public function listar(int $nRegPorPagina = 500, int $nPagina = 1, int $nCodigo = 0): ?\stdClass
     {
-        $render = parent::list('ListarSolucoes', $nRegPorPagina, $nPagina, $nCodigo, 'crm/solucoes/');
+        $render = parent::list('ListarSolucoes', $nRegPorPagina, $nPagina, $nCodigo, $this->endpoint);
         return $render;
     }
 }
