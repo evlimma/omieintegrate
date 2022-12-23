@@ -30,6 +30,10 @@ class Solucoes extends General
         if (!$somenteAtivos) {
             return $render;
         }
+        
+        if (empty($render->cadastros)) {
+            return null;
+        }
 
         foreach ($render->cadastros as $key => $value) {
             if ($value->cInativo === "S") {
