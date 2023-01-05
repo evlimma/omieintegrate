@@ -2,7 +2,7 @@
 
 namespace EvLimma\OmieIntegrate;
 
-class Usuarios extends General
+class Vendedores extends General
 {
     protected $endpoint = 'geral/vendedores/';
     
