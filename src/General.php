@@ -49,7 +49,7 @@ abstract class General
             ]]
         ];
         
-        // Adiciona o paramentro para filtro o c�digo
+        // Adiciona o paramentro para filtro o código
         if ($nCodigo) {
             $post['param'][0]['nCodigo'] = $nCodigo;
         }
