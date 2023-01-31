@@ -2,9 +2,9 @@
 
 namespace EvLimma\OmieIntegrate;
 
-class Solucoes extends General
+class Usuarios extends General
 {
-    protected $endpoint = 'crm/solucoes/';
+    protected $endpoint = 'crm/usuarios/';
     
     /**
      * 
@@ -16,30 +16,17 @@ class Solucoes extends General
         parent::__construct($apiKey, $apiSecret);
     }
 
-    /**
-     * 
-     * @param int $nRegPorPagina
-     * @param int $nPagina
-     * @param int $nCodigo
-     * @return \stdClass|null
-     */
-    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, ?int $nCodigo = 0, bool $somenteAtivos = true): ?\stdClass
+    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, ?int $nCodigo = 0): ?\stdClass
     {
-        $call = 'ListarSolucoes';
+        $call = 'ListarUsuarios';
 
         $post = [
             'call' => $call,
             'param' => [[
                 'pagina' => $nPagina,
-                'registros_por_pagina' => $nRegPorPagina,
-                'apenas_importado_api' => 'N'
+                'registros_por_pagina' => $nRegPorPagina
             ]]
         ];
-
-        // Adiciona o paramentro para filtro o código
-        if ($nCodigo) {
-            $post['param'][0]['nCodigo'] = $nCodigo;
-        }
         
         $render = parent::list($post, $this->endpoint);
         
@@ -47,9 +34,9 @@ class Solucoes extends General
             return null;
         }
 
-        if ($somenteAtivos) {
+        if ($nCodigo) {
             foreach ($render->cadastros as $key => $value) {
-                if ($value->cInativo === "S") {
+                if ($value->nCodigo !== $nCodigo) {
                     unset($render->cadastros[$key]);
                 }
             }

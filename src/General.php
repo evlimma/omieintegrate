@@ -34,26 +34,17 @@ abstract class General
      * @param string $endpoint
      * @return \stdClass|null
      */
-    public function list(string $call, int $nRegPorPagina, int $nPagina, int $nCodigo, string $endpoint): ?\stdClass
+    public function list(array $post, string $endpoint): ?\stdClass
     {
         $curl = curl_init();
 
-        $post = [
-            'call' => $call,
+        $postKey = [
             'app_key' => $this->apiKey,
             'app_secret' => $this->apiSecret,
-            'param' => [[
-                'pagina' => $nPagina,
-                'registros_por_pagina' => $nRegPorPagina,
-                'apenas_importado_api' => 'N'
-            ]]
         ];
         
-        // Adiciona o paramentro para filtro o código
-        if ($nCodigo) {
-            $post['param'][0]['nCodigo'] = $nCodigo;
-        }
-
+        $postApp = array_merge($postKey, $post);
+        
         curl_setopt_array($curl, [
             CURLOPT_URL => "{$this->urlLink}/{$endpoint}",
             CURLOPT_CUSTOMREQUEST => "POST",
@@ -64,7 +55,7 @@ abstract class General
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_HTTPHEADER => $this->typeHeader,
-            CURLOPT_POSTFIELDS => json_encode($post)
+            CURLOPT_POSTFIELDS => json_encode($postApp)
         ]);
 
         $response = json_decode(curl_exec($curl));

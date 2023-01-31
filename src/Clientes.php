@@ -2,9 +2,9 @@
 
 namespace EvLimma\OmieIntegrate;
 
-class Vendedores extends General
+class Clientes extends General
 {
-    protected $endpoint = 'geral/vendedores/';
+    protected $endpoint = 'geral/clientes/';
     
     /**
      * 
@@ -19,7 +19,7 @@ class Vendedores extends General
     public function listar(int $nRegPorPagina = 500, int $nPagina = 1, bool $somenteAtivos = true): ?\stdClass
     {
         $post = [
-            'call' => 'ListarVendedores',
+            'call' => 'ListarClientes',
             'param' => [[
                 'pagina' => $nPagina,
                 'registros_por_pagina' => $nRegPorPagina,
@@ -29,14 +29,14 @@ class Vendedores extends General
         
         $render = parent::list($post, $this->endpoint);
         
-        if (empty($render->cadastro)) {
+        if (empty($render->clientes_cadastro)) {
             return null;
         }
 
         if ($somenteAtivos) {
-            foreach ($render->cadastro as $key => $value) {
+            foreach ($render->clientes_cadastro as $key => $value) {
                 if ($value->inativo === "S") {
-                    unset($render->cadastro[$key]);
+                    unset($render->clientes_cadastro[$key]);
                 }
             }
         }
@@ -47,15 +47,15 @@ class Vendedores extends General
     public function consultar(int $nCodigo = 0, bool $somenteAtivos = true): ?\stdClass
     {
         $post = [
-            'call' => 'ConsultarVendedor',
+            'call' => 'ConsultarCliente',
             'param' => [[
-                'codigo' => $nCodigo
+                'codigo_cliente_omie' => $nCodigo
             ]]
         ];
 
         $render = parent::list($post, $this->endpoint);
         
-        if (empty($render->codigo)) {
+        if (empty($render->codigo_cliente_omie)) {
             return null;
         }
 

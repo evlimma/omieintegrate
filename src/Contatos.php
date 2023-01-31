@@ -2,9 +2,9 @@
 
 namespace EvLimma\OmieIntegrate;
 
-class Vendedores extends General
+class Contatos extends General
 {
-    protected $endpoint = 'geral/vendedores/';
+    protected $endpoint = 'crm/contatos/';
     
     /**
      * 
@@ -16,10 +16,10 @@ class Vendedores extends General
         parent::__construct($apiKey, $apiSecret);
     }
     
-    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, bool $somenteAtivos = true): ?\stdClass
+    public function listar(int $nRegPorPagina = 500, int $nPagina = 1): ?\stdClass
     {
         $post = [
-            'call' => 'ListarVendedores',
+            'call' => 'ListarContatos',
             'param' => [[
                 'pagina' => $nPagina,
                 'registros_por_pagina' => $nRegPorPagina,
@@ -29,37 +29,25 @@ class Vendedores extends General
         
         $render = parent::list($post, $this->endpoint);
         
-        if (empty($render->cadastro)) {
+        if (empty($render->cadastros)) {
             return null;
-        }
-
-        if ($somenteAtivos) {
-            foreach ($render->cadastro as $key => $value) {
-                if ($value->inativo === "S") {
-                    unset($render->cadastro[$key]);
-                }
-            }
         }
         
         return $render;
     }
     
-    public function consultar(int $nCodigo = 0, bool $somenteAtivos = true): ?\stdClass
+    public function consultar(int $nCodigo = 0): ?\stdClass
     {
         $post = [
-            'call' => 'ConsultarVendedor',
+            'call' => 'ConsultarContato',
             'param' => [[
-                'codigo' => $nCodigo
+                'nCod' => $nCodigo
             ]]
         ];
 
         $render = parent::list($post, $this->endpoint);
         
-        if (empty($render->codigo)) {
-            return null;
-        }
-
-        if ($somenteAtivos && $render->inativo === "S") {
+        if (empty($render->identificacao)) {
             return null;
         }
         
