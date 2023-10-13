@@ -16,13 +16,34 @@ class ContasCrm extends General
         parent::__construct($apiKey, $apiSecret);
     }
     
+    public function contasPages(): ?int
+    {
+        $post = [
+            'call' => 'ListarContas',
+            'param' => [[
+                'pagina' => 1,
+                'registros_por_pagina' => 500,
+                'apenas_importado_api' => 'N'
+            ]]
+        ];
+        
+        $render = parent::list($post, $this->endpoint);
+        
+        if (empty($render->total_de_paginas)) {
+            return null;
+        }
+        
+        return $render->total_de_paginas;
+    }
+    
     public function listar(int $nRegPorPagina = 500, int $nPagina = 1): ?\stdClass
     {
         $post = [
             'call' => 'ListarContas',
             'param' => [[
                 'pagina' => $nPagina,
-                'registros_por_pagina' => $nRegPorPagina
+                'registros_por_pagina' => $nRegPorPagina,
+                'apenas_importado_api' => 'N'
             ]]
         ];
         
