@@ -1,0 +1,29 @@
+{
+    "name": "evlimma/omieintegrate",
+    "description": "Ease PHP integration with Omie | Facilite a integração PHP com o Omie",
+    "type": "library",
+    "version": "1.0",
+    "keywords": [
+        "Evlimma",
+        "CodigoSpace",
+        "integracao",
+        "Omie"
+    ],
+    "homepage": "http://www.codigospace.com.br",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Everton Lima",
+            "email": "contato@codigospace.com.br",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "EvLimma\\OmieIntegrate\\": "src"
+        }
+    }
+}
