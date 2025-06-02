@@ -4,7 +4,8 @@ namespace EvLimma\OmieIntegrate;
 
 class Servicos extends General
 {
-    protected $endpoint = 'crm/servicos/';
+    protected $endpoint = 'servicos/servico/';
+    protected $call = 'ListarCadastroServico';
     
     /**
      * 
@@ -23,34 +24,28 @@ class Servicos extends General
     public function servicosPages(): ?int
     {
         $post = [
-            'call' => 'ListarServicos',
+            'call' => $this->call,
             'param' => [[
-                'pagina' => 1,
-                'registros_por_pagina' => 500
+                'nPagina' => 1,
+                'nRegPorPagina' => 500
             ]]
         ];
         $render = parent::list($post, $this->endpoint);
         
-
-        var_dump($render); exit;
-
-
-        
-        if (empty($render->total_de_paginas)) {
+        if (empty($render->nTotPaginas)) {
             return null;
         }
-        
-        return $render->total_de_paginas;
+
+        return $render->nTotPaginas;
     }
     
     public function listar(int $nRegPorPagina = 500, int $nPagina = 1): ?\stdClass
     {
         $post = [
-            'call' => 'ListarServicos',
+            'call' => $this->call,
             'param' => [[
-                'pagina' => $nPagina,
-                'registros_por_pagina' => $nRegPorPagina,
-                'apenas_importado_api' => 'N'
+                'nPagina' => $nPagina,
+                'nRegPorPagina' => $nRegPorPagina
             ]]
         ];
         
@@ -66,7 +61,7 @@ class Servicos extends General
     public function consultar(int $nCodigo = 0): ?\stdClass
     {
         $post = [
-            'call' => 'ListarServicos',
+            'call' => $this->call,
             'param' => [[
                 'nCod' => $nCodigo
             ]]
