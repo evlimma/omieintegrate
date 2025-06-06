@@ -26,8 +26,7 @@ class Solucoes extends General
             'call' => 'ListarSolucoes',
             'param' => [[
                 'pagina' => 1,
-                'registros_por_pagina' => 500,
-                'apenas_importado_api' => 'N'
+                'registros_por_pagina' => 500
             ]]
         ];
         
@@ -55,8 +54,7 @@ class Solucoes extends General
             'call' => 'ListarSolucoes',
             'param' => [[
                 'pagina' => $nPagina,
-                'registros_por_pagina' => $nRegPorPagina,
-                'apenas_importado_api' => 'N'
+                'registros_por_pagina' => $nRegPorPagina
             ]]
         ];
 
