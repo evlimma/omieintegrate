@@ -46,7 +46,7 @@ class Solucoes extends General
      * @param int $nCodigo
      * @return \stdClass|null
      */
-    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, ?int $nCodigo = 0, bool $somenteAtivos = true): ?\stdClass
+    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, ?int $nCodigo = 0, bool $somenteAtivos = false): ?\stdClass
     {
 								 
 

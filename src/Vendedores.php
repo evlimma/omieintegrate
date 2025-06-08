@@ -16,7 +16,7 @@ class Vendedores extends General
         parent::__construct($apiKey, $apiSecret);
     }
     
-    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, bool $somenteAtivos = true): ?\stdClass
+    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, bool $somenteAtivos = false): ?\stdClass
     {
         $post = [
             'call' => 'ListarVendedores',
