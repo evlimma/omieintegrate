@@ -2,7 +2,6 @@
     "name": "evlimma/omieintegrate",
     "description": "Ease PHP integration with Omie | Facilite a integração PHP com o Omie",
     "type": "library",
-    "version": "1.2",
     "keywords": [
         "Evlimma",
         "CodigoSpace",
