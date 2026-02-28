@@ -2,7 +2,7 @@
 
 namespace EvLimma\OmieIntegrate;
 
-class ContasCrm extends General
+class Contas extends General
 {
     protected $endpoint = 'crm/contas/';
     
