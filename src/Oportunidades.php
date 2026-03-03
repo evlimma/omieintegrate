@@ -34,7 +34,7 @@ class Oportunidades extends General
         
         return $render;
     }
-    
+
     public function incluir(array $data): ?\stdClass
     {
         $post = [
@@ -43,15 +43,16 @@ class Oportunidades extends General
                 'identificacao' => [
                     'cCodIntOp' => $data["cCodIntOp"],
                     'cDesOp' => $data["cDesOp"],
-                    'nCodConta' => $data["inContaCliente"],
+                    'nCodConta' => $data["nCodConta"],
                     'nCodContato' => $data["inOmieContato"],
-                    'nCodOrigem' => $data["inOrigem"],
-                    'nCodSolucao' => $data["inSolucao"],
-                    'nCodVendedor' => $data["inOmieVendedor"]
+                    'nCodOrigem' => $data["omor_nCodigo"],
+                    'nCodSolucao' => $data["omso_nCodigo"],
+                    'nCodVendedor' => $data["inOmieVendedor"],
+                    'cNumOp' => $data["cNumOp"],
                 ]
             ]]
         ];
-        
+
         $render = parent::list($post, $this->endpoint);
         
         return $render;
