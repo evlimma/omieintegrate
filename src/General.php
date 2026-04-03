@@ -44,7 +44,7 @@ abstract class General
         ];
         
         $postApp = array_merge($postKey, $post);
-        
+
         curl_setopt_array($curl, [
             CURLOPT_URL => "{$this->urlLink}/{$endpoint}",
             CURLOPT_CUSTOMREQUEST => "POST",

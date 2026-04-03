@@ -6,11 +6,6 @@ class Oportunidades extends General
 {
     protected $endpoint = 'crm/oportunidades/';
 
-    /**
-     * 
-     * @param string $apiKey
-     * @param string $apiSecret
-     */
     public function __construct(string $apiKey, string $apiSecret)
     {
         parent::__construct($apiKey, $apiSecret);
@@ -49,6 +44,7 @@ class Oportunidades extends General
                     'nCodSolucao' => $data["omso_nCodigo"],
                     'nCodVendedor' => $data["nCodVendedor"],
                     'cNumOp' => $data["cNumOp"],
+                    'nCodTipo' => $data["nCodTipo"],
                 ]
             ]]
         ];

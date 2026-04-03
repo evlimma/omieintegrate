@@ -16,27 +16,27 @@ class Clientes extends General
         parent::__construct($apiKey, $apiSecret);
     }
     
-    public function clientesPages(): ?int
-    {
-        $post = [
-            'call' => 'ListarClientesResumido',
-            'param' => [[
-                'pagina' => 1,
-                'registros_por_pagina' => 500,
-                'apenas_importado_api' => 'N'
-            ]]
-        ];
+    // public function clientesPages(): ?int
+    // {
+    //     $post = [
+    //         'call' => 'ListarClientesResumido',
+    //         'param' => [[
+    //             'pagina' => 1,
+    //             'registros_por_pagina' => 500,
+    //             'apenas_importado_api' => 'N'
+    //         ]]
+    //     ];
         
-        $render = parent::list($post, $this->endpoint);
+    //     $render = parent::list($post, $this->endpoint);
         
-        if (empty($render->total_de_paginas)) {
-            return null;
-        }
+    //     if (empty($render->total_de_paginas)) {
+    //         return null;
+    //     }
         
-        return $render->total_de_paginas;
-    }
+    //     return $render->total_de_paginas;
+    // }
     
-    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, bool $somenteAtivos = false): ?\stdClass
+    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, bool $somenteAtivos = false, $totalPages = false): \stdClass|int|string|null
     {
         $post = [
             'call' => 'ListarClientes',
@@ -48,6 +48,10 @@ class Clientes extends General
         ];
         
         $render = parent::list($post, $this->endpoint);
+        
+        if (!empty($render->faultstring)) {
+            return $render->faultstring;
+        }
         
         if (empty($render->clientes_cadastro)) {
             return null;
@@ -61,6 +65,7 @@ class Clientes extends General
             }
         }
         
+        return $totalPages ? $render->total_de_paginas : $render;
         return $render;
     }
     

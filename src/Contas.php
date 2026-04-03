@@ -6,37 +6,12 @@ class Contas extends General
 {
     protected $endpoint = 'crm/contas/';
     
-    /**
-     * 
-     * @param string $apiKey
-     * @param string $apiSecret
-     */
     public function __construct(string $apiKey, string $apiSecret)
     {
         parent::__construct($apiKey, $apiSecret);
     }
     
-    public function contasPages(): ?int
-    {
-        $post = [
-            'call' => 'ListarContas',
-            'param' => [[
-                'pagina' => 1,
-                'registros_por_pagina' => 500,
-                'apenas_importado_api' => 'N'
-            ]]
-        ];
-        
-        $render = parent::list($post, $this->endpoint);
-        
-        if (empty($render->total_de_paginas)) {
-            return null;
-        }
-        
-        return $render->total_de_paginas;
-    }
-    
-    public function listar(int $nRegPorPagina = 500, int $nPagina = 1): ?\stdClass
+    public function listar(int $nRegPorPagina = 500, int $nPagina = 1, $totalPages = false): \stdClass|int|string|null
     {
         $post = [
             'call' => 'ListarContas',
@@ -49,11 +24,15 @@ class Contas extends General
         
         $render = parent::list($post, $this->endpoint);
         
+        if (!empty($render->faultstring)) {
+            return $render->faultstring;
+        }
+
         if (empty($render->cadastros)) {
             return null;
         }
         
-        return $render;
+        return $totalPages ? $render->total_de_paginas : $render;
     }
     
     public function consultar(int $nCodigo = 0): ?\stdClass
