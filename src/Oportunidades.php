@@ -89,6 +89,7 @@ class Oportunidades extends General
                     // 'nCodVendedor' => $data['nCodVendedor'] ?? null,
                     'nCodSolucao' => $data['omso_nCodigo'] ?? null,
                     'nCodOrigem'  => $data['omor_nCodigo'] ?? null,
+                    'nCodTipo'  => $data['nCodTipo'] ?? null,
                 ], fn($v) => $v !== null)
             ]]
         ];
