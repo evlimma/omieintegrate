@@ -35,7 +35,7 @@ class Oportunidades extends General
         $post = [
             'call' => 'IncluirOportunidade',
             'param' => [[
-                'identificacao' => [
+                'identificacao' => array_filter([
                     'cCodIntOp' => $data["cCodIntOp"],
                     'cDesOp' => $data["cDesOp"],
                     'nCodConta' => $data["nCodConta"],
@@ -44,6 +44,8 @@ class Oportunidades extends General
                     'nCodSolucao' => $data["omso_nCodigo"],
                     'nCodVendedor' => $data["nCodVendedor"],
                     'cNumOp' => $data["cNumOp"],
+                ], fn($v) => $v !== null),
+                'outrasInf' => [
                     'nCodTipo' => $data["nCodTipo"],
                 ]
             ]]
